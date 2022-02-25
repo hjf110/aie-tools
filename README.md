@@ -32,8 +32,10 @@ let dataList = [1,2,3,4,5,6,7,8,9,10];
 let _dataList = tools.jsPaging( dataList , 1 , 2 ); //  [1,2]
 ```
 
-### 所有方法
 
+#### [文档地址](https://hjf110.github.io/hjf-tools/docs/interfaces/Types.html)
+
+### 所有方法 (只列出了一些)
 <span style="font-size: xx-small; ">
 
 | 方法名称         | 描述               | 入参                                                                                                                          | 返回      | 备注  |
