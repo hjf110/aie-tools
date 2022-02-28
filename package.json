@@ -1,13 +1,13 @@
 {
   "name": "hjf-tools",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "author": {
     "name": "hjf"
   },
   "private": false,
   "scripts": {
     "dev": "set NODE_ENV=developemnt&& rollup -c rollup.config.js -w",
-    "build:rollup": "typedoc --options typedoc.json && set NODE_ENV=production&& rollup -c rollup.config.js",
+    "build": "rd /s /q docs && rd /s /q lib && npm run doc && set NODE_ENV=production&& rollup -c rollup.config.js",
     "doc": "typedoc --options typedoc.json"
   },
   "types": "lib/src/index.d.ts",

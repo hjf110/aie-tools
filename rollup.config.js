@@ -26,7 +26,7 @@ const esPlugin = eslint({
 // 基础配置
 const commonConf = {
   input: getPath("./src/index.ts"),
-  plugins: [resolve(extensions), commonjs(), esPlugin, tsPlugin],
+  plugins: [resolve(extensions), commonjs(), tsPlugin],
 };
 // 需要导出的模块类型
 const outputMap = [

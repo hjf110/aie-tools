@@ -1,32 +1,3 @@
-import { isNumber, isObject } from "@/util-tool/is";
-import {
-  debounce,
-  downloadFile,
-  jsPaging,
-  onSubstring,
-} from "@/util-tool/other";
-import {
-  hideEmail,
-  hideIdCard,
-  hideName,
-  hidePhone,
-  hideStr,
-} from "@/util-tool/hide";
-import {
-  delCookie,
-  getCookie,
-  getStoreLocal,
-  getStoreSession,
-  setCookie,
-  setStoreLocal,
-  setStoreSession,
-} from "@/util-tool/storage";
-import {
-  getPageHeight,
-  getPageScrollLeft,
-  getViewportOffset,
-} from "@/util-tool/window";
-
 interface Env {
   /**
    *
