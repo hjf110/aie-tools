@@ -225,7 +225,7 @@ export function fullscreenExit() {
  * ``` typescript
  * import tools form 'hjf-tool'
  *
- * tools.toThousands(1000000)  // 1,000,000.00
+ * tools.toMoney(1000000)  // 1,000,000.00
  * ```
  */
 export function toMoney(num: string | number) {
