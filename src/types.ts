@@ -1,3 +1,5 @@
+import { toMoney } from "@/util-tool/other";
+
 interface Env {
   /**
    *
@@ -324,6 +326,17 @@ interface Storage {
    * 退出全屏
    */
   fullscreenExit(): void;
+  /**
+   * 千分位显示，常用于价格显示
+   * @param num
+   * @return {string}
+   * ``` typescript
+   * import tools form 'hjf-tool'
+   *
+   * tools.toThousands(1000000)  // 1,000,000.00
+   * ```
+   */
+  toMoney(): string;
 }
 
 interface Date {

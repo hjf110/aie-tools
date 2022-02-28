@@ -217,3 +217,19 @@ export function fullscreenExit() {
     ? elem.exitFullscreen()
     : alert("切换失败,可尝试Esc退出");
 }
+
+/**
+ * 千分位显示，常用于价格显示
+ * @param num
+ * @return {string}
+ * ``` typescript
+ * import tools form 'hjf-tool'
+ *
+ * tools.toThousands(1000000)  // 1,000,000.00
+ * ```
+ */
+export function toMoney(num: string | number) {
+  return parseFloat(num + "")
+    .toFixed(2)
+    .replace(/(\d{1,3})(?=(\d{3})+(?:\.))/g, "$1,");
+}
