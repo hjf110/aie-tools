@@ -1,6 +1,6 @@
 {
   "name": "hjf-tools",
-  "version": "0.2.5",
+  "version": "0.2.8",
   "author": {
     "name": "hjf"
   },
@@ -8,7 +8,9 @@
   "scripts": {
     "dev": "set NODE_ENV=developemnt&& rollup -c rollup.config.js -w",
     "build": "rd /s /q docs && rd /s /q lib && npm run doc && set NODE_ENV=production&& rollup -c rollup.config.js",
-    "doc": "typedoc --options typedoc.json"
+    "doc": "typedoc --options typedoc.json",
+    "login": "npm config set registry https://registry.npmjs.org && npm login",
+    "push": "npm config set registry https://registry.npmjs.org && npm run build && npm publish && npm config set registry https://registry.npm.taobao.org"
   },
   "types": "lib/src/index.d.ts",
   "license": "MIT",

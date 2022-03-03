@@ -18,15 +18,15 @@ export const setStoreLocal = (name: string, content: any) => {
  * @return
  */
 export const getStoreLocal = (name: string) => {
-  if (!name) return {};
-  let _val = window.localStorage.getItem(name) || "{}";
-  if (_val === "{}") return {};
-  let a = _val?.indexOf("{") ? _val?.indexOf("{") > -1 : false;
-  let b = _val?.indexOf("}") ? _val?.indexOf("}") > -1 : false;
-  if (a && b) {
-    return JSON.parse(_val);
-  }
-  return _val;
+  // if (!name) return {};
+  // let _val = window.localStorage.getItem(name) || "{}";
+  // if (_val === "{}") return {};
+  // let a = _val?.indexOf("{") ? _val?.indexOf("{") > -1 : false;
+  // let b = _val?.indexOf("}") ? _val?.indexOf("}") > -1 : false;
+  // if (a && b) {
+  //   return JSON.parse(_val);
+  // }
+  // return _val;
 };
 
 /**
@@ -47,15 +47,15 @@ export const setStoreSession = (name: string, content: any) => {
  * @param name
  */
 export const getStoreSession = (name: string) => {
-  if (!name) return {};
-  let _val = window.sessionStorage.getItem(name) || "{}";
-  if (_val === "{}") return {};
-  let a = _val?.indexOf("{") ? _val?.indexOf("{") > -1 : false;
-  let b = _val?.indexOf("}") ? _val?.indexOf("}") > -1 : false;
-  if (a && b) {
-    return JSON.parse(_val);
-  }
-  return _val;
+  // if (!name) return {};
+  // let _val = window.sessionStorage.getItem(name) || "{}";
+  // if (_val === "{}") return {};
+  // let a = _val?.indexOf("{") ? _val?.indexOf("{") > -1 : false;
+  // let b = _val?.indexOf("}") ? _val?.indexOf("}") > -1 : false;
+  // if (a && b) {
+  //   return JSON.parse(_val);
+  // }
+  // return _val;
 };
 
 /**
@@ -79,24 +79,24 @@ export const setCookie = (key: string, value: any, expire: any) => {
  * @return
  */
 export const getCookie = (key: string) => {
-  const cookieStr = unescape(document.cookie);
-  const arr = cookieStr.split("; ");
-  let cookieValue = "";
-  for (let i = 0; i < arr.length; i++) {
-    const temp = arr[i].split("=");
-    if (temp[0] === key) {
-      cookieValue = temp[1];
-      break;
-    }
-  }
-  if (cookieValue === "{}") return {};
-  let a = cookieValue?.indexOf("{") ? cookieValue?.indexOf("{") > -1 : false;
-  let b = cookieValue?.indexOf("}") ? cookieValue?.indexOf("}") > -1 : false;
-  if (a && b) {
-    return JSON.parse(cookieValue);
-  }
-
-  return cookieValue;
+  // const cookieStr = unescape(document.cookie);
+  // const arr = cookieStr.split("; ");
+  // let cookieValue = "";
+  // for (let i = 0; i < arr.length; i++) {
+  //   const temp = arr[i].split("=");
+  //   if (temp[0] === key) {
+  //     cookieValue = temp[1];
+  //     break;
+  //   }
+  // }
+  // if (cookieValue === "{}") return {};
+  // let a = cookieValue?.indexOf("{") ? cookieValue?.indexOf("{") > -1 : false;
+  // let b = cookieValue?.indexOf("}") ? cookieValue?.indexOf("}") > -1 : false;
+  // if (a && b) {
+  //   return JSON.parse(cookieValue);
+  // }
+  //
+  // return cookieValue;
 };
 
 /**

@@ -437,4 +437,4 @@ interface Window {
   getViewportOffset(): { X: number; Y: number };
 }
 
-export interface Types extends Env, Is, Other, Storage, Date, Window {}
+export interface Types extends Env, Is, Other, Storage, Date, Window, Hide {}
