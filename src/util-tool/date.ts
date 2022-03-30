@@ -18,8 +18,8 @@
  * ```
  */
 export function formatDate(format = "YYYY-MM-DD", timestamp: any = new Date()) {
-  let date = new Date(timestamp);
-  let dateInfo = {
+  const date = new Date(timestamp);
+  const dateInfo = {
     YYYY: date.getFullYear(),
     MM: date.getMonth() + 1,
     DD: date.getDate(),
@@ -27,7 +27,7 @@ export function formatDate(format = "YYYY-MM-DD", timestamp: any = new Date()) {
     mm: date.getMinutes(),
     ss: date.getSeconds(),
   };
-  let formatNumber = (n: number) => (n >= 10 ? n : "0" + n) + "";
+  const formatNumber = (n: number) => (n >= 10 ? n : "0" + n) + "";
 
   return format
     .replace("YYYY", String(dateInfo.YYYY))

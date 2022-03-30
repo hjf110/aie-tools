@@ -1,4 +1,5 @@
 import { toMoney } from "@/util-tool/other";
+import { isJSON } from "@/util-tool/is";
 
 interface Env {
   /**
@@ -73,6 +74,18 @@ interface Is {
    * ```
    */
   isNumber(value: any): boolean;
+  /**
+   * 是否是JSON格式数字
+   * @param value
+   * @return {Boolean}
+   * ``` typescript
+   * import tools form 'hjf-tool'
+   *
+   * tools.isJSON('123') // false
+   * tools.isJSON('{a:1}') // true
+   * ```
+   */
+  isJSON(value: any): boolean;
   [key: string]: any;
 }
 
@@ -91,14 +104,15 @@ interface Hide {
   /**
    * 姓名脱敏
    * @param name
+   * @param _hideStr
    * @return {String}
    * ``` typescript
    * import tools form 'hjf-tool'
    *
-   * tools.hideName('李思思')  // *思思
+   * tools.hideName('李思思')  // 李*思
    * ```
    */
-  hideName(name: string): string;
+  hideName(name: string, _hideStr: string): string;
   /**
    * 邮箱脱敏
    * @param email

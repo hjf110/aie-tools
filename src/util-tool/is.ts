@@ -24,3 +24,25 @@ export function isObject(value: any): value is Record<string, any> {
 export function isNumber(value: any): boolean {
   return typeof value === "number" && !isNaN(value);
 }
+
+/**
+ * 是否是JSON格式数字
+ * @param value
+ * @return {Boolean}
+ * ``` typescript
+ * import tools form 'hjf-tool'
+ *
+ * tools.isJSON('123') // false
+ * tools.isJSON('{a:1}') // true
+ * ```
+ */
+export function isJSON(value: any) {
+  if (typeof value == "string") {
+    try {
+      const obj = JSON.parse(value);
+      return !!(typeof obj == "object" && obj);
+    } catch (e) {
+      return false;
+    }
+  }
+}

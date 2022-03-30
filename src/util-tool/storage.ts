@@ -4,6 +4,8 @@
  * @param content
  * @returns
  */
+import { isJSON } from "@/util-tool/is";
+
 export const setStoreLocal = (name: string, content: any) => {
   if (!name) return;
   if (typeof content !== "string") {
@@ -18,15 +20,12 @@ export const setStoreLocal = (name: string, content: any) => {
  * @return
  */
 export const getStoreLocal = (name: string) => {
-  // if (!name) return {};
-  // let _val = window.localStorage.getItem(name) || "{}";
-  // if (_val === "{}") return {};
-  // let a = _val?.indexOf("{") ? _val?.indexOf("{") > -1 : false;
-  // let b = _val?.indexOf("}") ? _val?.indexOf("}") > -1 : false;
-  // if (a && b) {
-  //   return JSON.parse(_val);
-  // }
-  // return _val;
+  if (!name) return {};
+  const _val = window.localStorage.getItem(name) || "{}";
+  if (isJSON(_val)) {
+    return JSON.parse(_val);
+  }
+  return _val;
 };
 
 /**
@@ -47,15 +46,30 @@ export const setStoreSession = (name: string, content: any) => {
  * @param name
  */
 export const getStoreSession = (name: string) => {
-  // if (!name) return {};
-  // let _val = window.sessionStorage.getItem(name) || "{}";
-  // if (_val === "{}") return {};
-  // let a = _val?.indexOf("{") ? _val?.indexOf("{") > -1 : false;
-  // let b = _val?.indexOf("}") ? _val?.indexOf("}") > -1 : false;
-  // if (a && b) {
-  //   return JSON.parse(_val);
-  // }
-  // return _val;
+  if (!name) return {};
+  const _val = window.sessionStorage.getItem(name) || "{}";
+  if (isJSON(_val)) {
+    return JSON.parse(_val);
+  }
+  return _val;
+};
+
+/**
+ * 获取时间(设置cookie用)
+ * @param str
+ */
+const getSec = (str: string) => {
+  let str1 = str.substr(0, str.length - 1); //时间数值
+  let str2 = str.substr(str.length - 1, 1); //时间单位
+  if (str2 == "s") {
+    return +str1 * 1000;
+  } else if (str2 == "m") {
+    return +str1 * 60 * 1000;
+  } else if (str2 == "h") {
+    return +str1 * 60 * 60 * 1000;
+  } else if (str2 == "d") {
+    return +str1 * 24 * 60 * 60 * 1000;
+  }
 };
 
 /**
@@ -65,12 +79,11 @@ export const getStoreSession = (name: string) => {
  * @param expire 失效时间
  */
 export const setCookie = (key: string, value: any, expire: any) => {
-  const d = new Date();
-  d.setDate(d.getDate() + expire);
-  if (typeof value !== "string") {
-    value = JSON.stringify(value);
-  }
-  document.cookie = `${key}=${value};expires=${d.toUTCString()}`;
+  let strSec: any = getSec(expire);
+  let exp: any = new Date();
+  exp.setTime(exp.getTime() + strSec * 1);
+  //设置cookie的名称、值、失效时间
+  document.cookie = name + "=" + value + ";expires=" + exp.toGMTString();
 };
 
 /**
@@ -79,24 +92,20 @@ export const setCookie = (key: string, value: any, expire: any) => {
  * @return
  */
 export const getCookie = (key: string) => {
-  // const cookieStr = unescape(document.cookie);
-  // const arr = cookieStr.split("; ");
-  // let cookieValue = "";
-  // for (let i = 0; i < arr.length; i++) {
-  //   const temp = arr[i].split("=");
-  //   if (temp[0] === key) {
-  //     cookieValue = temp[1];
-  //     break;
-  //   }
-  // }
-  // if (cookieValue === "{}") return {};
-  // let a = cookieValue?.indexOf("{") ? cookieValue?.indexOf("{") > -1 : false;
-  // let b = cookieValue?.indexOf("}") ? cookieValue?.indexOf("}") > -1 : false;
-  // if (a && b) {
-  //   return JSON.parse(cookieValue);
-  // }
-  //
-  // return cookieValue;
+  //获取当前所有cookie
+  let strCookies = document.cookie;
+  //截取变成cookie数组
+  let array = strCookies.split(";");
+  //循环每个cookie
+  for (let i = 0; i < array.length; i++) {
+    //将cookie截取成两部分
+    let item = array[i].split("=");
+    //判断cookie的name 是否相等
+    if (item[0] == key) {
+      return item[1];
+    }
+  }
+  return null;
 };
 
 /**
@@ -104,5 +113,11 @@ export const getCookie = (key: string) => {
  * @param key
  */
 export const delCookie = (key: string) => {
-  document.cookie = `${encodeURIComponent(key)}=;expires=${new Date()}`;
+  let exp = new Date();
+  exp.setTime(exp.getTime() - 1);
+  //获取cookie是否存在
+  let value = getCookie(key);
+  if (value != null) {
+    document.cookie = key + "=" + value + ";expires=" + exp.toUTCString();
+  }
 };

@@ -22,7 +22,7 @@ export const jsPaging = (data = [], page = 1, count = 10): any[] => {
  * ```
  */
 export const onSubstring = (str: string, start: number, end: number) => {
-  let _start = start - 1 <= 0 ? 0 : start - 1;
+  const _start = start - 1 <= 0 ? 0 : start - 1;
   return str.substring(_start, end);
 };
 
@@ -33,22 +33,22 @@ export const onSubstring = (str: string, start: number, end: number) => {
  */
 export const downloadFile = (data: string, filename?: string) => {
   if (!filename) {
-    let date = new Date();
-    let m = date.getMonth() + 1;
-    let d = date.getDate();
+    const date = new Date();
+    const m = date.getMonth() + 1;
+    const d = date.getDate();
     filename = `${date.getFullYear()}-${m < 10 ? `0${m}` : m}-${
       d < 10 ? `0${d}` : d
     }-img`;
   }
-  let _doc: any = document;
-  let downloadLink = _doc.createElement("a");
+  const _doc: any = document;
+  const downloadLink = _doc.createElement("a");
   if (downloadLink) {
     _doc.body.appendChild(downloadLink);
     downloadLink.style = "display: none";
     downloadLink.download = filename;
     downloadLink.href = data;
     if (_doc.createEvent) {
-      let downloadEvt = _doc.createEvent("MouseEvents");
+      const downloadEvt = _doc.createEvent("MouseEvents");
       downloadEvt.initEvent("click", true, false);
       downloadLink.dispatchEvent(downloadEvt);
     } else if (_doc.createEventObject) {
@@ -68,7 +68,7 @@ export const downloadFile = (data: string, filename?: string) => {
  */
 export const debounce = (func: any, wait = 300, immediate = false) => {
   let timer: any, ctx: any;
-  let later = (arg: any) =>
+  const later = (arg: any) =>
     setTimeout(() => {
       func.apply(ctx, arg);
       timer = ctx = null;
@@ -76,6 +76,7 @@ export const debounce = (func: any, wait = 300, immediate = false) => {
   return function (...arg: any[]) {
     if (!timer) {
       timer = later(arg);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       ctx = this;
       if (immediate) {
@@ -107,7 +108,7 @@ export const debounce = (func: any, wait = 300, immediate = false) => {
  * ```
  */
 export function omit(object: any, props: string[] = []) {
-  let res: any = {};
+  const res: any = {};
   Object.keys(object).forEach((key) => {
     if (props.includes(key) === false) {
       res[key] =
@@ -144,8 +145,8 @@ export function omit(object: any, props: string[] = []) {
  * ```
  */
 function chooseField(object: any, props: string[] = []) {
-  let res: any = {};
-  let tempArr = Object.keys(object);
+  const res: any = {};
+  const tempArr = Object.keys(object);
   props.forEach((key) => {
     if (tempArr.includes(key) === true) {
       res[key] =
@@ -170,9 +171,9 @@ function chooseField(object: any, props: string[] = []) {
  * ```
  */
 function getUrlParam() {
-  let url = document.location.toString();
+  const url = document.location.toString();
   let arrObj = url.split("?");
-  let params = Object.create(null);
+  const params = Object.create(null);
   if (arrObj.length > 1) {
     arrObj = arrObj[1].split("&");
     arrObj.forEach((item: any) => {
@@ -188,7 +189,7 @@ function getUrlParam() {
  *
  */
 export function fullScreen() {
-  let elem: any = document.body;
+  const elem: any = document.body;
   elem.webkitRequestFullScreen
     ? elem.webkitRequestFullScreen()
     : elem.mozRequestFullScreen
@@ -204,7 +205,7 @@ export function fullScreen() {
  * 退出全屏
  */
 export function fullscreenExit() {
-  let elem: any = parent.document;
+  const elem: any = parent.document;
   elem.webkitCancelFullScreen
     ? elem.webkitCancelFullScreen()
     : elem.mozCancelFullScreen

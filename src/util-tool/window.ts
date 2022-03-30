@@ -8,7 +8,7 @@
  * ```
  */
 export function getPageHeight() {
-  let g = document,
+  const g = document,
     a = g.body,
     f = g.documentElement,
     d = g.compatMode == "BackCompat" ? a : g.documentElement;
@@ -24,7 +24,7 @@ export function getPageHeight() {
  * ```
  */
 export function getPageWidth() {
-  let g = document,
+  const g = document,
     a = g.body,
     f = g.documentElement,
     d = g.compatMode == "BackCompat" ? a : g.documentElement;
@@ -41,7 +41,7 @@ export function getPageWidth() {
  * ```
  */
 export function getPageScrollLeft() {
-  let a = document;
+  const a = document;
   return a.documentElement.scrollLeft || a.body.scrollLeft;
 }
 
